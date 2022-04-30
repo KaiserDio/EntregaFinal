@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle de Clientes</title>
+</head>
+<body>
+    
+    <p>Nombre: <i>{{ cliente.nombre }} </i></p>
+    <p>Apellido <i>{{ cliente.apellido }} </i></p>
+    <p>DNI <i>{{ cliente.dni }} </i></p>
+    <p>Email <i>{{ cliente.email }} </i></p>
+    <p>Telefono <i>{{ cliente.telefono}} </i></p>
+
+    <p>
+        <a href="{% url 'Lista' %}">Regresar</a>
+    </p>
+
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle de Vendedores</title>
+</head>
+<body>
+    
+    <p>Nombre: <i>{{ vendedor.nombre }} </i></p>
+    <p>Apellido: <i>{{ vendedor.apellido }} </i></p>
+    <p>DNI: <i>{{ vendedor.dni }} </i></p>
+    <p>Email: <i>{{ vendedor.email }} </i></p>
+    <p>CUIL: <i>{{ vendedor.cuil}} </i></p>
+    <p>Sueldo: <i>{{ vendedor.sueldo}} </i></p>
+
+    <p>
+        <a href="{% url 'ListaV' %}">Regresar</a>
+    </p>
+
+</body>
+</html>
