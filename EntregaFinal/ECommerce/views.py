@@ -1,4 +1,5 @@
 
+from multiprocessing import AuthenticationError
 from django.shortcuts import render
 from django.views.generic import ListView
 from django.views.generic.detail import DetailView
@@ -11,6 +12,9 @@ from ECommerce.models import Cliente
 from ECommerce.models import Vendedor
 from ECommerce.models import Producto
 
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.contrib.auth import login, logout, authenticate
+
 
 # Create your views here.
 
@@ -18,6 +22,69 @@ from ECommerce.models import Producto
 def inicio(request):
     
     return render(request, "ECommerce/inicio.html" )
+
+
+
+# LOGIN y REGISTRO
+
+def login_request(request):
+
+    if request.method == "POST":
+
+        form = AuthenticationForm(request, data = request.POST)
+
+        if form.is_valid():
+
+            """ usuario = form.cleaned_data.get("username")
+            contraseña = form.cleaned_data.get("password") """
+
+            datos = form.cleaned_data
+
+            usuario = datos["username"]
+            passw = datos["password"]
+
+            user = authenticate(username=usuario, password=passw)
+
+
+            if user is not None:
+
+                login(request, user)
+
+                return render(request, "ECommerce/inicio.html", {"mensaje":f"Bienvenido {usuario}"})
+
+            else:
+
+                return render(request, "ECommerce/inicio.html", {"mensaje":"Error, datos incorrectos"})
+
+        else:
+
+            return render(request, "ECommerce/inicio.html", {"mensaje":"Error, formulario erroneo"})
+
+    else: 
+
+        form = AuthenticationForm()
+
+    return render(request, "ECommerce/login.html", {"form": form})
+
+
+
+def registro(request):
+
+    if request.method == "POST":
+
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+
+            username = form.cleaned_data['username']
+            form.save()
+            return render(request, "ECommerce/inicio.html" , {"mensaje": f"Usuario { username } creado"})
+
+    else:
+
+        form = UserCreationForm()
+
+    return render(request, "ECommerce/registro.html", {"form":form})
+    
 
 # CLIENTES
 

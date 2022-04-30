@@ -3,20 +3,25 @@ from django.contrib import admin
 from django.urls import path
 
 from ECommerce.views import ClienteList, ClienteDetalle, ClienteCreacion, ClienteDelete, ClienteUpdate
-from ECommerce.views import inicio
+from ECommerce.views import inicio, login_request, registro
 from ECommerce.views import VendedorCreacion, VendedorDelete, VendedorDetalle, VendedorList, VendedorUpdate
 from ECommerce.views import ProductoCreacion, ProductoDelete, ProductoDetalle, ProductoList, ProductoUpdate
+
+
+
 
 
 urlpatterns = [
 
     path('', inicio, name="index"),
+    path('login/', login_request, name="login"),
+    path('register/', registro, name="register"),
 
-    path('cliente/lista', ClienteList.as_view(), name="Lista"),
-    path('cliente/detalle/<pk>', ClienteDetalle.as_view(), name="Detalle"),
-    path('cliente/nuevo', ClienteCreacion.as_view(), name="Nuevo"),
-    path('cliente/editar/<pk>', ClienteUpdate.as_view(), name="Editar"),
-    path('cliente/borrar/<pk>', ClienteDelete.as_view(), name="Borrar"),
+    path('cliente/lista', ClienteList.as_view(), name="ListaC"),
+    path('cliente/detalle/<pk>', ClienteDetalle.as_view(), name="DetalleC"),
+    path('cliente/nuevo', ClienteCreacion.as_view(), name="NuevoC"),
+    path('cliente/editar/<pk>', ClienteUpdate.as_view(), name="EditarC"),
+    path('cliente/borrar/<pk>', ClienteDelete.as_view(), name="BorrarC"),
 
     path('vendedor/lista', VendedorList.as_view(), name="ListaV"),
     path('vendedor/detalle/<pk>', VendedorDetalle.as_view(), name="DetalleV"),

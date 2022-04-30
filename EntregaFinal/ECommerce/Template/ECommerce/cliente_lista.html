@@ -15,13 +15,13 @@
 
             <li>
                 <p>{{ cliente.nombre }} {{ cliente.apellido }} 
-                <a href="{% url 'Detalle' cliente.id %}">Ver</a> - <a href="{% url 'Editar' cliente.id %}">Editar</a>- <a href="{% url 'Borrar' cliente.id %}">Borrar</a></p>
+                <a href="{% url 'DetalleC' cliente.id %}">Ver</a> - <a href="{% url 'EditarC' cliente.id %}">Editar</a>- <a href="{% url 'BorrarC' cliente.id %}">Borrar</a></p>
         
             </li>
         
         {% endfor %}
 
-        <a href="{% url 'Nuevo' %}">Agregar nuevo Cliente</a>
+        <a href="{% url 'NuevoC' %}">Agregar nuevo Cliente</a>
     </ul>
 
 </body>

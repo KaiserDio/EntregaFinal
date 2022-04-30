@@ -8,7 +8,20 @@
 </head>
 <body>
     
-    <a href="{% url 'Nuevo' %}">Nuevo</a>
+    <p> AGREGAR </p>
+
+    <a href="{% url 'NuevoC' %}">Nuevo Cliente</a>
+    <br>
+    <br>
+    <a href="{% url 'NuevoP' %}">Nuevo Producto</a>
+    <br>
+    <br>
+    <a href="{% url 'NuevoV' %}">Nuevo Vendedor</a>
+
+    <br>
+    <br>
+    
+    {{ mensaje }}
 
 </body>
 </html>
