@@ -3,9 +3,10 @@ from django.contrib import admin
 from django.urls import path
 
 from ECommerce.views import ClienteList, ClienteDetalle, ClienteCreacion, ClienteDelete, ClienteUpdate
-from ECommerce.views import inicio, login_request, registro
+from ECommerce.views import inicio, login_request, registro, editarPerfil, agregarAvatar
 from ECommerce.views import VendedorCreacion, VendedorDelete, VendedorDetalle, VendedorList, VendedorUpdate
 from ECommerce.views import ProductoCreacion, ProductoDelete, ProductoDetalle, ProductoList, ProductoUpdate
+from django.contrib.auth.views import LogoutView
 
 
 
@@ -16,6 +17,9 @@ urlpatterns = [
     path('', inicio, name="index"),
     path('login/', login_request, name="login"),
     path('register/', registro, name="register"),
+    path('logout/', LogoutView.as_view(template_name="ECommerce/logout.html"), name="logout"),
+    path('editarPerfil/', editarPerfil, name="editarPerfil"),
+    path('agregarAvatar/', agregarAvatar, name="agregarAvatar"),
 
     path('cliente/lista', ClienteList.as_view(), name="ListaC"),
     path('cliente/detalle/<pk>', ClienteDetalle.as_view(), name="DetalleC"),

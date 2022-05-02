@@ -1,5 +1,6 @@
 
 from multiprocessing import AuthenticationError
+import re
 from django.shortcuts import render
 from django.views.generic import ListView
 from django.views.generic.detail import DetailView
@@ -14,14 +15,23 @@ from ECommerce.models import Producto
 
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth.decorators import login_required
+
+from ECommerce.forms import UserEditForm
+from ECommerce.models import Avatar
+from ECommerce.forms import AvatarFormulario
+
+from django.contrib.auth.models import User
+
 
 
 # Create your views here.
 
-
+@login_required
 def inicio(request):
     
-    return render(request, "ECommerce/inicio.html" )
+    avatares = Avatar.objects.filter(user=request.user.id)
+    return render(request, "ECommerce/inicio.html", {"url":avatares[0].imagen.url} )
 
 
 
@@ -35,8 +45,6 @@ def login_request(request):
 
         if form.is_valid():
 
-            """ usuario = form.cleaned_data.get("username")
-            contraseña = form.cleaned_data.get("password") """
 
             datos = form.cleaned_data
 
@@ -85,6 +93,60 @@ def registro(request):
 
     return render(request, "ECommerce/registro.html", {"form":form})
     
+
+# EDITAR PERFIL
+@login_required
+def editarPerfil(request):
+
+    usuario = request.user
+
+    if request.method == "POST":
+
+        miFormulario = UserEditForm(request.POST, request.FILES)
+
+        if miFormulario.is_valid():
+
+
+            informacion = miFormulario.cleaned_data
+
+            usuario.email = informacion["email"]
+            usuario.password1 = informacion["password1"]
+            usuario.password2 = informacion["password2"]
+            usuario.first_name = informacion["first_name"]
+            usuario.last_name = informacion["last_name"]
+            
+            usuario.save()
+            
+            return render(request, "ECommerce/inicio.html")
+
+    else:
+
+        miFormulario = UserEditForm(initial={"email":usuario.email})
+
+    return render(request, "ECommerce/editar_perfil.html", {"miFormulario":miFormulario, "usuario":usuario})
+
+
+# Agregar Avatar
+
+def agregarAvatar(request):
+    if request.method == "POST":
+
+        miFormulario = AvatarFormulario(request.POST, request.FILES)
+
+        if miFormulario.is_valid():
+
+            u = User.objects.get(username=request.user)
+
+            avatar = Avatar(user=u, imagen=miFormulario.cleaned_data["avatar"])
+
+            avatar.save()
+
+            return render(request, "ECommerce/inicio.html")
+    else:
+
+        miFormulario= AvatarFormulario()
+
+    return render(request, "ECommerce/agregar_avatar.html", {"miFormulario":miFormulario})
 
 # CLIENTES
 
