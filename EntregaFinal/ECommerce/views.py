@@ -9,7 +9,7 @@ from django.urls import reverse_lazy
 from django.views.generic.edit import UpdateView
 from django.views.generic.edit import DeleteView
 
-from ECommerce.models import Cliente, Vendedor,Producto ,Compra, Avatar
+from ECommerce.models import Cliente, Vendedor,Producto ,Compra, Avatar, Mensaje
 
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import login, logout, authenticate
@@ -18,6 +18,7 @@ from django.contrib.auth.decorators import login_required
 from ECommerce.forms import UserEditForm, AvatarFormulario
 
 from django.contrib.auth.models import User
+
 
 
 # Create your views here.
@@ -225,7 +226,7 @@ class ProductoDelete(DeleteView):
     success_url = "/producto/lista"
 
 
-# CompraS
+# COMPRA
 
 class CompraList(ListView):
 
@@ -251,3 +252,31 @@ class CompraUpdate(UpdateView):
 class CompraDelete(DeleteView):
     model = Compra
     success_url = "/compra/lista"
+
+
+# MENSAJE
+
+class MensajeList(ListView):
+
+    model = Mensaje
+    template_name = "ECommerce/mensaje_lista.html"
+
+class MensajeDetalle(DetailView):
+    model = Mensaje
+    template_name =  "ECommerce/mensaje_detalle.html"
+
+class MensajeCreacion(CreateView):
+    model = Mensaje
+    template_name =  "ECommerce/mensaje_form.html"
+    success_url = "/mensaje/lista"
+    fields = ["idMensajeAnterior", "idCliente", "idVendedor", "asunto", "mensaje", "fecha"]
+
+class MensajeUpdate(UpdateView):
+
+    model= Mensaje
+    success_url = "/mensaje/lista"
+    fields = ["idMensajeAnterior", "idCliente", "idVendedor", "asunto", "mensaje", "fecha"]
+
+class MensajeDelete(DeleteView):
+    model = Mensaje
+    success_url = "/mensaje/lista"

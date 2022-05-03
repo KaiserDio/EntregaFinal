@@ -9,6 +9,7 @@ from ECommerce.views import ProductoCreacion, ProductoDelete, ProductoDetalle, P
 from django.contrib.auth.views import LogoutView
 
 from ECommerce.views import CompraCreacion, CompraDelete, CompraDetalle, CompraList, CompraUpdate
+from ECommerce.views import MensajeCreacion, MensajeDelete, MensajeDetalle, MensajeList, MensajeUpdate
 
 
 urlpatterns = [
@@ -43,5 +44,11 @@ urlpatterns = [
     path('compra/nuevo', CompraCreacion.as_view(), name="NuevoCom"),
     path('compra/editar/<pk>', CompraUpdate.as_view(), name="EditarCom"),
     path('compra/borrar/<pk>', CompraDelete.as_view(), name="BorrarCom"),
+
+    path('mensaje/lista', MensajeList.as_view(), name="ListaM"),
+    path('mensaje/detalle/<pk>', MensajeDetalle.as_view(), name="DetalleM"),
+    path('mensaje/nuevo', MensajeCreacion.as_view(), name="NuevoM"),
+    path('mensaje/editar/<pk>', MensajeUpdate.as_view(), name="EditarM"),
+    path('mensaje/borrar/<pk>', MensajeDelete.as_view(), name="BorrarM"),
 
 ]

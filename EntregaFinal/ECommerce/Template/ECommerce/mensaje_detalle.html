@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle de Mensajes</title>
+</head>
+<body>
+    
+    <p>ID Mensaje Anterior: <i>{{ mensaje.idMensajeAnterior }} </i></p>
+    <p>ID Cliente: <i>{{ mensaje.idCliente }} </i></p>
+    <p>ID Vendedor: <i>{{ mensaje.Vendedor}} </i></p>
+    <p>Asunto: <i>{{ mensaje.asunto }} </i></p>
+    <p>Mensaje: <i>{{ mensaje.mensaje}} </i></p>
+    <p>Fecha: <i>{{ mensaje.fecha}} </i></p>
+
+    <p>
+        <a href="{% url 'ListaM' %}">Regresar</a>
+    </p>
+
+</body>
+</html>

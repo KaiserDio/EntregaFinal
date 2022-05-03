@@ -48,7 +48,7 @@ class Compra(models.Model):
     comprobantePago = models.IntegerField()
 
     def __str__(self):
-        return f"Compra de: {self.idCliente} - Fecha de Compra: {self.fechaCompra} - E-Mail {self.email}"
+        return f"Compra de: {self.idCliente} - Fecha de Compra: {self.fechaCompra}"
 
 class Producto(models.Model):
     nombre = models.CharField(max_length=40)
