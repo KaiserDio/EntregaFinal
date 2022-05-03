@@ -19,6 +19,8 @@ from ECommerce.forms import UserEditForm, AvatarFormulario
 
 from django.contrib.auth.models import User
 
+from django.contrib.auth.mixins import PermissionRequiredMixin
+
 
 
 # Create your views here.
@@ -146,7 +148,8 @@ def agregarAvatar(request):
 
 # CLIENTES
 
-class ClienteList(ListView):
+class ClienteList(PermissionRequiredMixin, ListView):
+    permission_required = 'ecommerce.cliente.can_view_cliente'
 
     model = Cliente
     template_name = "ECommerce/cliente_lista.html"

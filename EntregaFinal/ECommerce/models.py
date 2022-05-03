@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 class Cliente(models.Model):
+    idUser = models.ForeignKey(User, default=0 ,on_delete = models.CASCADE)
     nombre = models.CharField(max_length=40)
     apellido = models.CharField(max_length=40)
     email = models.EmailField()
@@ -13,6 +14,7 @@ class Cliente(models.Model):
         return f"Nombre: {self.nombre} - Apellido: {self.apellido} - E-Mail {self.email}"
 
 class Vendedor(models.Model):
+    idUser = models.ForeignKey(User, on_delete = models.CASCADE)
     nombre = models.CharField(max_length=40)
     apellido = models.CharField(max_length=40)
     email = models.EmailField()

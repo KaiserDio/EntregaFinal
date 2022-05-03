@@ -56,7 +56,7 @@ ROOT_URLCONF = 'EntregaFinal.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ["C:/Users/Dio/Desktop/EntregaFinal/EntregaFinal/EntregaFinal/ECommerce/Template"],
+        'DIRS': [".\\ECommerce\\Template"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
