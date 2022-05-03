@@ -9,20 +9,15 @@ from django.urls import reverse_lazy
 from django.views.generic.edit import UpdateView
 from django.views.generic.edit import DeleteView
 
-from ECommerce.models import Cliente
-from ECommerce.models import Vendedor
-from ECommerce.models import Producto
+from ECommerce.models import Cliente, Vendedor,Producto ,Compra, Avatar
 
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
 
-from ECommerce.forms import UserEditForm
-from ECommerce.models import Avatar
-from ECommerce.forms import AvatarFormulario
+from ECommerce.forms import UserEditForm, AvatarFormulario
 
 from django.contrib.auth.models import User
-
 
 
 # Create your views here.
@@ -228,3 +223,31 @@ class ProductoUpdate(UpdateView):
 class ProductoDelete(DeleteView):
     model = Producto
     success_url = "/producto/lista"
+
+
+# CompraS
+
+class CompraList(ListView):
+
+    model = Compra
+    template_name = "ECommerce/compra_lista.html"
+
+class CompraDetalle(DetailView):
+    model = Compra
+    template_name =  "ECommerce/compra_detalle.html"
+
+class CompraCreacion(CreateView):
+    model = Compra
+    template_name =  "ECommerce/compra_form.html"
+    success_url = "/compra/lista"
+    fields = ["idCliente", "idVendedor","direccion", "localidad", "codigoPostal", "estado", "medioPago", "fechaCompra", "fechaEnvio", "fecha", "comprobantePago"]
+
+class CompraUpdate(UpdateView):
+
+    model= Compra
+    success_url = "/compra/lista"
+    fields = ["idCliente", "idVendedor","direccion", "localidad", "codigoPostal", "estado", "medioPago", "fechaCompra", "fechaEnvio", "fecha", "comprobantePago"]
+
+class CompraDelete(DeleteView):
+    model = Compra
+    success_url = "/compra/lista"

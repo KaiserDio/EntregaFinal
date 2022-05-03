@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle de Compras</title>
+</head>
+<body>
+    
+    <p>ID Cliente: <i>{{ compra.idCliente }} </i></p>
+    <p>ID Vendedor <i>{{ compra.idVendedor }} </i></p>
+    <p>Direccion <i>{{ compra.direccion }} </i></p>
+    <p>Localidad <i>{{ compra.localidad }} </i></p>
+    <p>Codigo Postal <i>{{ compra.codigoPostal}} </i></p>
+    <p>Estado <i>{{ compra.estado}} </i></p>
+    <p>Medio de Pago <i>{{ compra.medioPago}} </i></p>
+    <p>Fecha de la Compra <i>{{ compra.fechaCompra}} </i></p>
+    <p>Fecha del Envio <i>{{ compra.fechaEnvio}} </i></p>
+    <p>Fecha <i>{{ compra.fecha}} </i></p>
+    <p>Comprobante de Pago <i>{{ compra.comprobantePago}} </i></p>
+
+    <p>
+        <a href="{% url 'ListaCom' %}">Regresar</a>
+    </p>
+
+</body>
+</html>
