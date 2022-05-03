@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Novedades</title>
+</head>
+<body>
+
+    <h1>Novedades</h1>
+    <ul>
+
+        {% for novedad in object_list %}
+
+            <li>
+                <p>{{ novedad.titulo }}
+                <a href="{% url 'DetalleN' novedad.id %}">Ver</a> - <a href="{% url 'EditarN' novedad.id %}">Editar</a>- <a href="{% url 'BorrarN' novedad.id %}">Borrar</a></p>
+        
+            </li>
+        
+        {% endfor %}
+
+        <a href="{% url 'NuevoN' %}">Agregar nueva novedad</a>
+        <br>
+        <br>
+        <a href="{% url 'index' %}">Regresar</a>
+    </ul>
+
+</body>
+</html>

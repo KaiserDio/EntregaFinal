@@ -9,7 +9,7 @@ from django.urls import reverse_lazy
 from django.views.generic.edit import UpdateView
 from django.views.generic.edit import DeleteView
 
-from ECommerce.models import Cliente, Vendedor,Producto ,Compra, Avatar, Mensaje
+from ECommerce.models import Cliente, Vendedor,Producto ,Compra, Avatar, Mensaje, Novedad, CompraXProducto
 
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import login, logout, authenticate
@@ -280,3 +280,57 @@ class MensajeUpdate(UpdateView):
 class MensajeDelete(DeleteView):
     model = Mensaje
     success_url = "/mensaje/lista"
+
+# NOVEDAD
+
+class NovedadList(ListView):
+
+    model = Novedad
+    template_name = "ECommerce/novedad_lista.html"
+
+class NovedadDetalle(DetailView):
+    model = Novedad
+    template_name =  "ECommerce/novedad_detalle.html"
+
+class NovedadCreacion(CreateView):
+    model = Novedad
+    template_name =  "ECommerce/novedad_form.html"
+    success_url = "/novedad/lista"
+    fields = ["titulo", "subtitulo", "contenido", "imagen", "fecha"]
+
+class NovedadUpdate(UpdateView):
+
+    model= Novedad
+    success_url = "/novedad/lista"
+    fields = ["titulo", "subtitulo", "contenido", "imagen", "fecha"]
+
+class NovedadDelete(DeleteView):
+    model = Novedad
+    success_url = "/novedad/lista"
+
+# COMPRA X PRODUCTO
+
+class CompraXProductoList(ListView):
+
+    model = CompraXProducto
+    template_name = "ECommerce/compraXProducto_lista.html"
+
+class CompraXProductoDetalle(DetailView):
+    model = CompraXProducto
+    template_name =  "ECommerce/compraXProducto_detalle.html"
+
+class CompraXProductoCreacion(CreateView):
+    model = CompraXProducto
+    template_name =  "ECommerce/compraXProducto_form.html"
+    success_url = "/compraXProducto/lista"
+    fields = ["idCompra", "idProducto", "cantidad", "precioTotal"]
+
+class CompraXProductoUpdate(UpdateView):
+
+    model= CompraXProducto
+    success_url = "/compraXProducto/lista"
+    fields = ["idCompra", "idProducto", "cantidad", "precioTotal"]
+
+class CompraXProductoDelete(DeleteView):
+    model = CompraXProducto
+    success_url = "/compraXProducto/lista"

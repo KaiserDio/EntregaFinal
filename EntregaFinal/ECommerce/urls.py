@@ -10,6 +10,8 @@ from django.contrib.auth.views import LogoutView
 
 from ECommerce.views import CompraCreacion, CompraDelete, CompraDetalle, CompraList, CompraUpdate
 from ECommerce.views import MensajeCreacion, MensajeDelete, MensajeDetalle, MensajeList, MensajeUpdate
+from ECommerce.views import NovedadCreacion, NovedadDelete, NovedadDetalle, NovedadList, NovedadUpdate
+from ECommerce.views import CompraXProductoCreacion, CompraXProductoDelete, CompraXProductoDetalle, CompraXProductoList, CompraXProductoUpdate
 
 
 urlpatterns = [
@@ -50,5 +52,17 @@ urlpatterns = [
     path('mensaje/nuevo', MensajeCreacion.as_view(), name="NuevoM"),
     path('mensaje/editar/<pk>', MensajeUpdate.as_view(), name="EditarM"),
     path('mensaje/borrar/<pk>', MensajeDelete.as_view(), name="BorrarM"),
+
+    path('novedad/lista', NovedadList.as_view(), name="ListaN"),
+    path('novedad/detalle/<pk>', NovedadDetalle.as_view(), name="DetalleN"),
+    path('novedad/nuevo', NovedadCreacion.as_view(), name="NuevoN"),
+    path('novedad/editar/<pk>', NovedadUpdate.as_view(), name="EditarN"),
+    path('novedad/borrar/<pk>', NovedadDelete.as_view(), name="BorrarN"),
+
+    path('compraXProducto/lista', CompraXProductoList.as_view(), name="ListaCXP"),
+    path('compraXProducto/detalle/<pk>', CompraXProductoDetalle.as_view(), name="DetalleCXP"),
+    path('compraXProducto/nuevo', CompraXProductoCreacion.as_view(), name="NuevoCXP"),
+    path('compraXProducto/editar/<pk>', CompraXProductoUpdate.as_view(), name="EditarCXP"),
+    path('compraXProducto/borrar/<pk>', CompraXProductoDelete.as_view(), name="BorrarCXP"),
 
 ]

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de CompraXProductos</title>
+</head>
+<body>
+
+    <h1>CompraXProductos</h1>
+    <ul>
+
+        {% for compraXProducto in object_list %}
+
+            <li>
+                <p>{{ compraXProducto.id }}
+                <a href="{% url 'DetalleCXP' compraXProducto.id %}">Ver</a> - <a href="{% url 'EditarCXP' compraXProducto.id %}">Editar</a>- <a href="{% url 'BorrarCXP' compraXProducto.id %}">Borrar</a></p>
+        
+            </li>
+        
+        {% endfor %}
+
+        <a href="{% url 'NuevoCXP' %}">Agregar nuevo CompraXProducto</a>
+        <br>
+        <br>
+        <a href="{% url 'index' %}">Regresar</a>
+    </ul>
+
+</body>
+</html>

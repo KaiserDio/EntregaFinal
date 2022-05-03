@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle de Compra X Productos</title>
+</head>
+<body>
+    
+    <p>ID Compra: <i>{{ compraxproducto.idCompra }} </i></p>
+    <p>ID Producto: <i>{{ compraxproducto.idProducto }} </i></p>
+    <p>Cantidad: <i>{{ compraxproducto.cantidad }} </i></p>
+    <p>Precio Total: <i>{{ compraxproducto.precioTotal }} </i></p>
+    
+
+    <p>
+        <a href="{% url 'ListaCXP' %}">Regresar</a>
+    </p>
+
+</body>
+</html>
