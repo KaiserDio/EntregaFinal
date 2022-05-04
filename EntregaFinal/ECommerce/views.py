@@ -26,11 +26,24 @@ from django.contrib.auth.mixins import PermissionRequiredMixin, LoginRequiredMix
 
 @login_required
 def inicio(request):
-    
+
     avatares = Avatar.objects.filter(user=request.user.id)
-    return render(request, "ECommerce/inicio.html", {"url":avatares[0].imagen.url} )
 
+    novedades = Novedad.objects.all
 
+    producto = Producto.objects.all
+    
+    return render(request, "ECommerce/inicio.html", {"url":avatares[0].imagen.url,"novedades":novedades, "producto":producto} )
+
+# CONTACTO.
+def contacto(request):
+    
+    return render(request, "ECommerce/contacto.html") 
+
+# SOBRE NOSOTROS.
+def sobre_nosotros(request):
+    
+    return render(request, "ECommerce/sobre_nosotros.html") 
 
 # LOGIN y REGISTRO
 

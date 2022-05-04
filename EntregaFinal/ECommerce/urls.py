@@ -12,6 +12,7 @@ from ECommerce.views import CompraCreacion, CompraDelete, CompraDetalle, CompraL
 from ECommerce.views import MensajeCreacion, MensajeDelete, MensajeDetalle, MensajeList, MensajeUpdate
 from ECommerce.views import NovedadCreacion, NovedadDelete, NovedadDetalle, NovedadList, NovedadUpdate
 from ECommerce.views import CompraXProductoCreacion, CompraXProductoDelete, CompraXProductoDetalle, CompraXProductoList, CompraXProductoUpdate
+from ECommerce.views import contacto, sobre_nosotros
 
 
 urlpatterns = [
@@ -54,7 +55,6 @@ urlpatterns = [
     path('mensaje/borrar/<pk>', MensajeDelete.as_view(), name="BorrarM"),
 
     path('novedad/lista', NovedadList.as_view(), name="ListaN"),
-     path('novedad/lista2', NovedadList.as_view(), name="ListaN"),
     path('novedad/detalle/<pk>', NovedadDetalle.as_view(), name="DetalleN"),
     path('novedad/nuevo', NovedadCreacion.as_view(), name="NuevoN"),
     path('novedad/editar/<pk>', NovedadUpdate.as_view(), name="EditarN"),
@@ -65,5 +65,8 @@ urlpatterns = [
     path('compraXProducto/nuevo', CompraXProductoCreacion.as_view(), name="NuevoCXP"),
     path('compraXProducto/editar/<pk>', CompraXProductoUpdate.as_view(), name="EditarCXP"),
     path('compraXProducto/borrar/<pk>', CompraXProductoDelete.as_view(), name="BorrarCXP"),
+
+    path('contacto', contacto, name="Contacto"),
+    path('sobre_nosotros', sobre_nosotros, name="Sobre"),
 
 ]

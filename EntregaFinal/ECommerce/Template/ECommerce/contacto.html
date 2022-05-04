@@ -7,30 +7,21 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agregar Avatar</title>
+    <title>Contacto</title>
 </head>
 <body>
     <center>
+        
+       
         <br>
         <br>
-    <br>
-    <br>
-    <br>
-    <h3>Cargar Avatar</h3>
-    <form method= "POST" enctype="multipart/form-data">
-
-        {% csrf_token %}
-
-        {{ miFormulario.as_p}}
-        <br>
-        <input type="submit" value="Actualizar">
         <br>
         <br>
+        <br>
+  
         <a href="{% url 'index' %}">Regresar</a>
-
-
-    </form>
-    </center>
+    </p>
+</center>
 </body>
 </html>
 {% endblock main %}

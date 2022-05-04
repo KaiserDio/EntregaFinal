@@ -44,13 +44,14 @@
 <title>Login</title>
 </head>
 <body>
-<center>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br> 
 
+    <br>
+    <br>
+    <br>
+    <center>
+    <h2>Registre su cuenta</h2>
+    <br>
+</center>
     <form action="" method="POST">
 
         {% csrf_token %}
@@ -59,16 +60,17 @@
         
         <br>
         <br> 
+        <center>
         <button type="submit">Registrate</button>
         <br>
         <br>
         <a href="{% url 'login' %}">Volver</a>
 
-
+    </center>
     </form>
 
 
 
-</center>
+
 </body>
 </html>
