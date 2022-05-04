@@ -1,29 +1,73 @@
+{% extends 'ECommerce/inicio.html' %}
+    
+{% block main %}
 <!DOCTYPE html>
 <html lang="en">
+    <br>
+    <br>
+    <br>
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista de Productos</title>
 </head>
+
 <body>
+    <center>
+    <br>
+    <br>
     <h1>Productos</h1>
     <ul>
+        <br>
+        <a class="btn-cart welcome-add-cart welcome-more-info" href="{% url 'NuevoP' %}">Agregar  Producto</a>
+       
+        <br>
 
         {% for producto in object_list %}
 
-            <li>
-                <p>{{ producto.nombre }} 
-                <a href="{% url 'DetalleP' producto.id %}">Ver</a> - <a href="{% url 'EditarP' producto.id %}">Editar</a>- <a href="{% url 'BorrarP' producto.id %}">Borrar</a></p>
-        
+               <div class="new-arrivals-content">
+                    <div class="row">
+                        <div class="col-md-3 col-sm-4">
+                            <div class="single-new-arrival">
+                                <div class="single-new-arrival-bg">
+                                    <img src="/media/{{ producto.imagen }}" alt="new-arrivals images">
+                                    <div class="single-new-arrival-bg-overlay"></div>
+                                   
+                                    <div class="new-arrival-cart">
+                                        <p>
+                                            <span class="lnr lnr-cart"></span>
+                                            <a href="#">add <span>to </span> cart</a>
+                                        </p>
+                                        <p class="arrival-review pull-right">
+                                            <span class="lnr lnr-heart"></span>
+                                            <span class="lnr lnr-frame-expand"></span>
+                                        </p>
+                                    </div>
+                                </div>
+                                <h4><a href="{% url 'DetalleP' producto.id  %}">{{ producto.nombre }} </a></h4>
+                                <p class="arrival-product-price">{{ producto.precio}}$</p>
+                                 <a href="{% url 'EditarP' producto.id %}">Editar</a>- <a href="{% url 'BorrarP' producto.id %}">Borrar</a></p>
+                             </div> 
+                        </div>
+                    </div>
+                </div>
+           
+            
+
+
+
             </li>
         
-        {% endfor %}
+            {% endfor %}
 
-        <a href="{% url 'NuevoP' %}">Agregar nuevo producto</a>
-        <br>
+     
         <br>
         <a href="{% url 'index' %}">Regresar</a>
     </ul>
+</center>
 </body>
+
 </html>
+{% endblock main %}

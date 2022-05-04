@@ -1,3 +1,9 @@
+{% extends 'ECommerce/inicio.html' %}
+    
+{% block main %}
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,12 +18,49 @@
     <ul>
 
         {% for novedad in object_list %}
-
-            <li>
-                <p>{{ novedad.titulo }}
-                <a href="{% url 'DetalleN' novedad.id %}">Ver</a> - <a href="{% url 'EditarN' novedad.id %}">Editar</a>- <a href="{% url 'BorrarN' novedad.id %}">Borrar</a></p>
         
-            </li>
+            {% if novedad.id is not 0  %}
+            
+                <!-- .item -->
+					<div class="item active">
+						<div class="single-slide-item slide1">
+							<div class="container">
+								<div class="welcome-hero-content">
+									<div class="row">
+										<div class="col-sm-7">
+											<div class="single-welcome-hero">
+												<div class="welcome-hero-txt">
+													<h4>{{novedad.titulo}}</h4>
+													<h2>{{novedad.subtitulo}}</h2>
+													<p>
+														{{novedad.contenido}}
+													</p>
+													<div class="packages-price">
+														<p>
+															{{novedad.fecha}}
+														</p>
+													</div>
+                                                    <a href="{% url 'DetalleN' novedad.id %}" class="btn-cart welcome-add-cart"> <center>Ver Detalle</center></a>
+                                                    <a href="{% url 'EditarN' novedad.id %}" class="btn-cart welcome-add-cart welcome-more-info"> <center>Editar</center></a>
+                                                    <a href="{% url 'BorrarN' novedad.id %}" class="btn-cart welcome-add-cart welcome-more-info"> <center>Borrar</center></a>
+												</div><!--/.welcome-hero-txt-->
+											</div><!--/.single-welcome-hero-->
+										</div><!--/.col-->
+										<div class="col-sm-5">
+											<div class="single-welcome-hero">
+												<div class="welcome-hero-img">
+													<img height="40" src="/media/{{novedad.imagen}}" alt="slider image">
+												</div><!--/.welcome-hero-txt-->
+											</div><!--/.single-welcome-hero-->
+										</div><!--/.col-->
+									</div><!--/.row-->
+								</div><!--/.welcome-hero-content-->
+							</div><!-- /.container-->
+						</div><!-- /.single-slide-item-->
+
+					</div><!-- /.item .active-->
+            
+            {% endif %}
         
         {% endfor %}
 
@@ -29,3 +72,4 @@
 
 </body>
 </html>
+{% endblock main %}

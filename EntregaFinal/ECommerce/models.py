@@ -25,16 +25,7 @@ class Vendedor(models.Model):
     def __str__(self):
         return f"Nombre: {self.nombre} - Apellido: {self.apellido} - E-Mail {self.email}"
 
-class Mensaje(models.Model):
-    idMensajeAnterior = models.IntegerField()
-    idCliente = models.ForeignKey(Cliente, on_delete = models.PROTECT)
-    idVendedor = models.ForeignKey(Vendedor, on_delete = models.PROTECT)
-    asunto = models.CharField(max_length=150)
-    mensaje = models.CharField(max_length=5000)
-    fecha = models.DateField()
 
-    def __str__(self):
-        return f"idCliente: {self.idCliente} - idVendedor: {self.idVendedor} - Asunto {self.asunto}"
 
 class Compra(models.Model):
     idCliente = models.ForeignKey(Cliente, on_delete = models.PROTECT)
@@ -72,6 +63,16 @@ class Novedad(models.Model):
     contenido = models.CharField(max_length=5000)
     imagen = models.ImageField()
     fecha = models.DateField()
+
+
+class Mensaje(models.Model):
+    idNovedad = models.ForeignKey(Novedad, on_delete = models.CASCADE)
+    idUser = models.ForeignKey(User, on_delete = models.CASCADE)
+    mensaje = models.CharField(max_length=5000)
+    fecha = models.DateField()
+
+    def __str__(self):
+        return f"idCliente: {self.idCliente} - idVendedor: {self.idVendedor} - Asunto {self.asunto}"
 
 
 class Avatar(models.Model):

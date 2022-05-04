@@ -1,6 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+   
+    {% load static %}
+    <!-- title of site -->
+    <title>Login</title>
+
+    <!-- For favicon png -->
+    <link rel="shortcut icon" type="image/icon" href="{% static 'ECommerce/assets/logo/favicon.png'%}"/>
+   
+    <!--font-awesome.min.css-->
+    <link rel="stylesheet" href="{% static 'assets/css/font-awesome.min.css'%}">
+ 
+    <!--linear icon css-->
+    <link rel="stylesheet" href="{% static 'assets/css/linearicons.css'%}">
+
+    <!--animate.css-->
+    <link rel="stylesheet" href="{% static 'assets/css/animate.css'%}">
+
+    <!--owl.carousel.css-->
+    <link rel="stylesheet" href="{% static 'assets/css/owl.carousel.min.css'%}">
+    <link rel="stylesheet" href="{% static 'assets/css/owl.theme.default.min.css'%}">
+    
+    <!--bootstrap.min.css-->
+    <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css'%}">
+    
+    <!-- bootsnav -->
+    <link rel="stylesheet" href="{% static 'assets/css/bootsnav.css'%}" >	
+    
+    <!--style.css-->
+    <link rel="stylesheet" href="{% static 'assets/css/style.css'%}">
+    
+    <!--responsive.css-->
+    <link rel="stylesheet" href="{% static 'assets/css/responsive.css'%}">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,10 +46,15 @@
 
         {{ form.as_p }}
 
-        <button type="submit"> Iniciar Sesion</button>
-
-        <a href="{% url 'register' %}">Registrarse</a>
-    
+       
+    <button class="btn-cart welcome-add-cart" type="submit">
+            <span class="lnr lnr-plus-circle"></span>
+            Iniciar Sesion
+    </button>
+    <button class="btn-cart welcome-add-cart welcome-more-info" href="{% url 'register' %}">
+            Registrarse
+    </button>
+       
     </form>
 </body>
 </html>

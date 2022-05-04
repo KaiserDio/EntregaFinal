@@ -1,5 +1,14 @@
+{% extends 'ECommerce/inicio.html' %}
+    
+{% block main %}
 <!DOCTYPE html>
 <html lang="en">
+<center>
+<br>
+<br>
+<br>
+<br>
+<br>
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,12 +20,14 @@
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }}
+        <br>
         <input  type="submit" value="Enviar" />
     </form>    
-
+    <br>
     <p>
         <a href="{% url 'ListaP' %}">Regresar</a>
     </p>
-
+</center>
 </body>
 </html>
+{% endblock main %}

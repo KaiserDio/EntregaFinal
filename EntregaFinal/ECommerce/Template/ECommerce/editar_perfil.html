@@ -1,12 +1,19 @@
+{% extends 'ECommerce/inicio.html' %}
+    
+{% block main %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <br>
+        <br>
+    
     <title>Editar Perfil</title>
 </head>
 <body>
+    <center>
     <h1> Formulario - Editar perfil de {{usuario}}</h1>
 
 <form action="" method="POST" enctype="multipart/form-data"> {% csrf_token %}
@@ -16,16 +23,21 @@
         {{ miFormulario.as_table }}
 
     </table>
-
-    <a href="{% url 'agregarAvatar' %}">Cargar Avatar</a>
+    <button class="btn-cart welcome-add-cart" type="submit">
+        Editar Perfil
+    </button>
+  
+    <a class="btn-cart welcome-add-cart welcome-more-info" href="{% url 'agregarAvatar' %}">Cargar Avatar</a>
+    
     
     <input type="submit", value="Editar Perfil">
 
-    <a href="{% url 'index' %}">Regresar</a>
+    <a class="btn-cart welcome-add-cart welcome-more-info" href="{% url 'index' %}">Regresar</a>
 
 </form>
 
 
-
+</center>
 </body>
 </html>
+{% endblock main %}

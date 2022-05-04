@@ -1,16 +1,30 @@
+{% extends 'ECommerce/inicio.html' %}
+    
+{% block main %}
 <!DOCTYPE html>
 <html lang="en">
+    
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <br>
+    <br>
+
     <title>Lista de Clientes</title>
 </head>
 <body>
-
-    <h1>Clientes</h1>
+    <center>
+        
+        <br>
+        <br>
+    
+    
+    <FONT SIZE=10>Clientes</FONT>
+    
     <ul>
-
+        <br>
+        <br>
         {% for cliente in object_list %}
 
             <li>
@@ -21,11 +35,15 @@
         
         {% endfor %}
 
-        <a href="{% url 'NuevoC' %}">Agregar nuevo Cliente</a>
+        
+        <a class="btn-cart welcome-add-cart welcome-more-info" href="{% url 'NuevoC' %}">Agregar nuevo Cliente</a>
         <br>
-        <br>
-        <a href="{% url 'index' %}">Regresar</a>
+        <a class="btn-cart welcome-add-cart welcome-more-info" href="{% url 'index' %}">Regresar</a>
+    
+    </center>
     </ul>
 
 </body>
+
 </html>
+{% endblock main %}

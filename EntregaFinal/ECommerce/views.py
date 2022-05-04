@@ -292,10 +292,16 @@ class CompraDelete(PermissionRequiredMixin, DeleteView):
 
 # MENSAJE
 
-class MensajeList(LoginRequiredMixin, ListView):
+class MensajeList(LoginRequiredMixin, ListView):    
 
     model = Mensaje
     template_name = "ECommerce/mensaje_lista.html"
+
+class MensajeList2(LoginRequiredMixin, ListView):    
+
+    model = Mensaje
+    template_name = "ECommerce/novedad_detalle.html"
+
 
 class MensajeDetalle(LoginRequiredMixin, DetailView):
     model = Mensaje
