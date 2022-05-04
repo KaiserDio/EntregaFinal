@@ -10,17 +10,23 @@
     <title>Detalle de Clientes</title>
 </head>
 <body>
-    
+    <center>
+
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>    
     <p>Nombre: <i>{{ cliente.nombre }} </i></p>
     <p>Apellido <i>{{ cliente.apellido }} </i></p>
     <p>DNI <i>{{ cliente.dni }} </i></p>
     <p>Email <i>{{ cliente.email }} </i></p>
     <p>Telefono <i>{{ cliente.telefono}} </i></p>
-
+    <br>
     <p>
         <a href="{% url 'ListaC' %}">Regresar</a>
     </p>
-
+</center>
 </body>
 </html>
 {% endblock main %}

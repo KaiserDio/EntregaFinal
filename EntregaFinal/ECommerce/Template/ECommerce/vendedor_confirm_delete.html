@@ -10,6 +10,14 @@
     <title>Eliminar Vendedor</title>
 </head>
 <body>
+    <center>
+        
+       
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
     <form method="post">{% csrf_token %}
         ¿Queres borrar el vendedor "{{ object.nombre }} {{ object.apellido }}"?
         <br>
@@ -19,7 +27,7 @@
     </form>
 
 
-
+</center>
 </body>
 </html>
 {% endblock main %}

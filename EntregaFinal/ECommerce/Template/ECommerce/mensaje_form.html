@@ -10,10 +10,15 @@
     <title>Mensaje Formulario</title>
 </head>
 <body>
-    
+    <center> 
+        <br>
+        <br>
+        <br>
+        <br>
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
+        <br>
         <input  type="submit" value="Enviar" />
     </form>    
 
@@ -21,7 +26,7 @@
         <a href="{% url 'ListaM' %}">Regresar</a>
     </p>
 
-
+</center>
 </body>
 </html>
 {% endblock main %}

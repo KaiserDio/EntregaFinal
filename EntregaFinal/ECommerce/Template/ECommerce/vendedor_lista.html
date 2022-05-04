@@ -10,7 +10,16 @@
     <title>Document</title>
 </head>
 <body>
+   <center>
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
     <h1>Vendedores</h1>
+    <br>
+    <br>
     <ul>
 
         {% for vendedor in object_list %}
@@ -28,6 +37,7 @@
         <br>
         <a href="{% url 'index' %}">Regresar</a>
     </ul>
+</center>
 </body>
 </html>
 {% endblock main %}

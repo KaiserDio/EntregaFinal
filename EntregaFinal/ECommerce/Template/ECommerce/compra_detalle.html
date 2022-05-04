@@ -10,7 +10,14 @@
     <title>Detalle de Compras</title>
 </head>
 <body>
-    
+    <center>
+        
+       
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
     <p>ID Cliente: <i>{{ compra.idCliente }} </i></p>
     <p>ID Vendedor <i>{{ compra.idVendedor }} </i></p>
     <p>Direccion <i>{{ compra.direccion }} </i></p>
@@ -22,11 +29,11 @@
     <p>Fecha del Envio <i>{{ compra.fechaEnvio}} </i></p>
     <p>Fecha <i>{{ compra.fecha}} </i></p>
     <p>Comprobante de Pago <i>{{ compra.comprobantePago}} </i></p>
-
+    <br>
     <p>
         <a href="{% url 'ListaCom' %}">Regresar</a>
     </p>
-
+</center>
 </body>
 </html>
 {% endblock main %}
