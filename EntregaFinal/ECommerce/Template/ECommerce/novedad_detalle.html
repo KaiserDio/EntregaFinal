@@ -17,16 +17,59 @@
         <br>
         <br>
         <br>
-    <p>Titulo: <i>{{ novedad.titulo }} </i></p>
-    <p>Subtitulo: <i>{{ novedad.subtitulo }} </i></p>
-    <p>Contenido: <i>{{ novedad.contenido }} </i></p>
-    <p>Imagen: <i>{{ novedad.imagen }} </i></p>
-    <p>Fecha: <i>{{ novedad.fecha}} </i></p>
 
-    <p>
-        <a href="{% url 'ListaN' %}">Regresar</a>
-    </p>
+    <!-- .item -->
+    
+    
+            <div class="container">
+                <div class="welcome-hero-content">
+                    <div class="row">
+                        <div class="col-sm-7">
+                            <div class="single-welcome-hero">
+                                <div class="welcome-hero-txt">
+                                    <h4>{{novedad.titulo}}</h4>
+                                    <h2>{{novedad.subtitulo}}</h2>
+                                    <p>
+                                        {{novedad.contenido}}
+                                    </p>
+                                    <div class="packages-price">
+                                        <p>
+                                            {{novedad.fecha}}
+                                        </p>
+                                    </div>
+                                    
+                                    <br><br>
+                                    <h4 SIZE=10 ><b> Mensajes de los Usuarios</b></h4>
+                                    <br>                                        
+
+                                    {% for mensaje in novedad.mensaje_set.all %}
+
+                                        <h5 align="left">Mensaje de {{mensaje.idUser}} el {{mensaje.fecha}}</h4>
+                                            <P align="left"><i>{{mensaje.mensaje}} </i></P>
+                                            <br>
+                                    
+                                    {% endfor %}
+
+                                    <a href="{% url 'ListaN' %}" class="btn-cart welcome-add-cart"> <center>Regresar</center></a>
+                                    <a href="{% url 'Nuevo2M' novedad.id %}" class="btn-cart welcome-add-cart welcome-more-info"> <center>Nuevo Mensaje</center></a>              
+
+                                </div><!--/.welcome-hero-txt-->
+                            </div><!--/.single-welcome-hero-->
+                        </div><!--/.col-->
+                        <div class="col-sm-5">
+                            <div class="single-welcome-hero">
+                                <div class="welcome-hero-img">
+                                    <img height="40" align="center" src="/media/{{novedad.imagen}}" alt="slider image">
+                                </div><!--/.welcome-hero-txt-->
+                            </div><!--/.single-welcome-hero-->
+                        </div><!--/.col-->
+                    </div><!--/.row-->
+                </div><!--/.welcome-hero-content-->
+            </div>
+    <br>
+
 </center>
+
 </body>
 </html>
 {% endblock main %}

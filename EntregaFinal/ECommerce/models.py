@@ -64,12 +64,8 @@ class Novedad(models.Model):
     imagen = models.ImageField()
     fecha = models.DateField()
 
-""" class NovedadInicio(models.Model):
-    titulo = models.CharField(max_length=150)
-    subtitulo = models.CharField(max_length=150)
-    contenido = models.CharField(max_length=5000)
-    imagen = models.ImageField()
-    fecha = models.DateField() """
+    def __str__(self):
+        return f"Titulo: {self.titulo} - subtitulo: {self.subtitulo} - Fecha {self.fecha}"
 
 
 class Mensaje(models.Model):
@@ -79,7 +75,7 @@ class Mensaje(models.Model):
     fecha = models.DateField()
 
     def __str__(self):
-        return f"idCliente: {self.idCliente} - idVendedor: {self.idVendedor} - Asunto {self.asunto}"
+        return f"idNovedad: {self.idNovedad} - idUser: {self.idUser} - fecha {self.fecha}"
 
 
 class Avatar(models.Model):

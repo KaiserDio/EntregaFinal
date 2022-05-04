@@ -35,3 +35,9 @@ class Meta:
     fields = [ "avatar"]
 
     help_text = { k:"" for k in fields }
+
+class MensajeFormulario(forms.Form):
+    idNovedad = forms.IntegerField()
+    idUser = forms.IntegerField()
+    profesion = forms.CharField()
+    fecha = forms.DateField()

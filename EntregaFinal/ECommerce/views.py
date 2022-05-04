@@ -1,4 +1,5 @@
 
+from datetime import datetime
 from multiprocessing import AuthenticationError
 from django.shortcuts import render
 from django.views.generic import ListView
@@ -14,7 +15,7 @@ from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
 
-from ECommerce.forms import UserEditForm, AvatarFormulario
+from ECommerce.forms import UserEditForm, AvatarFormulario, MensajeFormulario
 
 from django.contrib.auth.models import User
 
@@ -304,33 +305,47 @@ class CompraDelete(PermissionRequiredMixin, DeleteView):
 
 # MENSAJE
 
-class MensajeList(LoginRequiredMixin, ListView):    
+class MensajeList(PermissionRequiredMixin, ListView):    
+    permission_required = 'ECommerce.view_mensaje'
 
     model = Mensaje
     template_name = "ECommerce/mensaje_lista.html"
 
-class MensajeList2(LoginRequiredMixin, ListView):    
+def nuevoMensaje(request, pk):
 
-    model = Mensaje
-    template_name = "ECommerce/novedad_detalle.html"
+    if request.method == "POST":
+        user = User.objects.get(username=request.user)
+        novedad = Novedad.objects.get(id=pk)
+        now = datetime.now()
+        fecha = f"{now.year}-{now.month}-{now.day}"
+
+        mensaje = Mensaje(idNovedad=novedad, idUser=user, mensaje=request.POST['mensaje'], fecha=fecha)
+        mensaje.save()
+
+        #return render(request, "ECommerce/inicio.html")
+        return render(request, "ECommerce/novedad_detalle.html", {"novedad":novedad})
+
+    return render(request, "ECommerce/mensaje_form2.html")
 
 
-class MensajeDetalle(LoginRequiredMixin, DetailView):
+class MensajeDetalle(PermissionRequiredMixin, DetailView):
+    permission_required = 'ECommerce.view_mensaje'
     model = Mensaje
     template_name =  "ECommerce/mensaje_detalle.html"
 
-class MensajeCreacion(LoginRequiredMixin, CreateView):
+class MensajeCreacion(PermissionRequiredMixin, CreateView):
+    permission_required = 'ECommerce.add_mensaje'
     model = Mensaje
     template_name =  "ECommerce/mensaje_form.html"
     success_url = "/mensaje/lista"
-    fields = ["idMensajeAnterior", "idCliente", "idVendedor", "asunto", "mensaje", "fecha"]
+    fields = ["idNovedad", "idUser", "mensaje", "fecha"]
 
 class MensajeUpdate(PermissionRequiredMixin, UpdateView):
     permission_required = 'ECommerce.change_mensaje'
 
     model= Mensaje
     success_url = "/mensaje/lista"
-    fields = ["idMensajeAnterior", "idCliente", "idVendedor", "asunto", "mensaje", "fecha"]
+    fields = ["idNovedad", "idUser", "mensaje", "fecha"]
 
 class MensajeDelete(PermissionRequiredMixin, DeleteView):
     permission_required = 'ECommerce.delete_mensaje'
