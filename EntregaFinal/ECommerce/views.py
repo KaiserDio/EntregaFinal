@@ -1,6 +1,5 @@
 
 from multiprocessing import AuthenticationError
-import re
 from django.shortcuts import render
 from django.views.generic import ListView
 from django.views.generic.detail import DetailView
@@ -332,11 +331,11 @@ class NovedadList(ListView):
 
     model = Novedad
     template_name = "ECommerce/novedad_lista.html"
-
+    
 class NovedadDetalle(DetailView):
     model = Novedad
     template_name =  "ECommerce/novedad_detalle.html"
-
+    
 class NovedadCreacion(PermissionRequiredMixin, CreateView):
     permission_required = 'ECommerce.add_novedad'
 
@@ -344,7 +343,7 @@ class NovedadCreacion(PermissionRequiredMixin, CreateView):
     template_name =  "ECommerce/novedad_form.html"
     success_url = "/novedad/lista"
     fields = ["titulo", "subtitulo", "contenido", "imagen", "fecha"]
-
+    
 class NovedadUpdate(PermissionRequiredMixin, UpdateView):
     permission_required = 'ECommerce.change_novedad'
 
@@ -392,3 +391,37 @@ class CompraXProductoDelete(PermissionRequiredMixin, DeleteView):
 
     model = CompraXProducto
     success_url = "/compraXProducto/lista"
+  
+  
+# NOVEDAD EN INICIO
+
+""" class NovedadList(ListView):
+
+    model = NovedadInicio
+    template_name = "ECommerce/inicio.html"
+    
+class NovedadInicioDetalle(DetailView):
+    model = NovedadInicio
+    template_name =  "ECommerce/inicio.html"
+    
+class NovedadInicioCreacion(PermissionRequiredMixin, CreateView):
+    permission_required = 'ECommerce.add_novedad'
+
+    model = NovedadInicio
+    template_name =  "ECommerce/inicio.html"
+    success_url = "/novedad/lista2"
+    fields = ["titulo", "subtitulo", "contenido", "imagen", "fecha"]
+    
+class NovedadInicioUpdate(PermissionRequiredMixin, UpdateView):
+    permission_required = 'ECommerce.change_novedad'
+
+    model= NovedadInicio
+    success_url = "/novedad/lista2"
+    fields = ["titulo", "subtitulo", "contenido", "imagen", "fecha"]
+
+class NovedadInicioDelete(PermissionRequiredMixin, DeleteView):
+    permission_required = 'ECommerce.delete_novedad'
+
+    model = NovedadInicio
+    success_url = "/novedad/lista2"
+ """

@@ -40,6 +40,12 @@
     <title>Login</title>
 </head>
 <body>
+    <center>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br> 
     <form action= "" method="POST">
 
         {% csrf_token %}
@@ -48,13 +54,13 @@
 
        
     <button class="btn-cart welcome-add-cart" type="submit">
-            <span class="lnr lnr-plus-circle"></span>
+            
             Iniciar Sesion
     </button>
-    <button class="btn-cart welcome-add-cart welcome-more-info" href="{% url 'register' %}">
-            Registrarse
-    </button>
+    <a href="{% url 'register' %}" class="btn-cart welcome-add-cart welcome-more-info"> <center> Registrarse</center></a>
+ 
        
     </form>
+</center>
 </body>
 </html>

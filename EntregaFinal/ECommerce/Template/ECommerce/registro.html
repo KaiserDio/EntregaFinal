@@ -1,6 +1,4 @@
-{% extends 'ECommerce/inicio.html' %}
-    
-{% block main %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,16 +7,61 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro</title>
 </head>
+{% load static %}
+<!-- title of site -->
+<title>Login</title>
+
+<!-- For favicon png -->
+<link rel="shortcut icon" type="image/icon" href="{% static 'ECommerce/assets/logo/favicon.png'%}"/>
+
+<!--font-awesome.min.css-->
+<link rel="stylesheet" href="{% static 'assets/css/font-awesome.min.css'%}">
+
+<!--linear icon css-->
+<link rel="stylesheet" href="{% static 'assets/css/linearicons.css'%}">
+
+<!--animate.css-->
+<link rel="stylesheet" href="{% static 'assets/css/animate.css'%}">
+
+<!--owl.carousel.css-->
+<link rel="stylesheet" href="{% static 'assets/css/owl.carousel.min.css'%}">
+<link rel="stylesheet" href="{% static 'assets/css/owl.theme.default.min.css'%}">
+
+<!--bootstrap.min.css-->
+<link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css'%}">
+
+<!-- bootsnav -->
+<link rel="stylesheet" href="{% static 'assets/css/bootsnav.css'%}" >	
+
+<!--style.css-->
+<link rel="stylesheet" href="{% static 'assets/css/style.css'%}">
+
+<!--responsive.css-->
+<link rel="stylesheet" href="{% static 'assets/css/responsive.css'%}">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login</title>
+</head>
 <body>
+<center>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br> 
 
     <form action="" method="POST">
 
         {% csrf_token %}
 
         {{ form.as_p }}
-
+        
+        <br>
+        <br> 
         <button type="submit">Registrate</button>
-
+        <br>
+        <br>
         <a href="{% url 'login' %}">Volver</a>
 
 
@@ -26,7 +69,6 @@
 
 
 
-
+</center>
 </body>
 </html>
-{% endblock main %}

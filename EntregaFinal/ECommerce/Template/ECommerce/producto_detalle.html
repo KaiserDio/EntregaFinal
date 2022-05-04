@@ -18,10 +18,10 @@
     <p>Nombre: <i>{{ producto.nombre }} </i></p>
     <p>Categoria: <i>{{ producto.categoria }} </i></p>
     <p>Descripcion: <i>{{ producto.descripcion }} </i></p>
-    <p>imagen: <i><img height="100px" src="/media/{{ producto.imagen }}" ></i></p>
+    <p> <i><img height="100px" src="/media/{{ producto.imagen }}" ></i></p>
     <p>Stock: <i>{{ producto.stock}} </i></p>
-    <p>Precio: <i>{{ producto.precio}} </i></p>
-
+    <p>Precio: <i>{{ producto.precio}}$ </i></p>
+    <br>
     <p>
         <a href="{% url 'ListaP' %}">Regresar</a>
     </p>

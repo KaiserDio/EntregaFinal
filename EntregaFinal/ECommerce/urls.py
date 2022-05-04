@@ -54,6 +54,7 @@ urlpatterns = [
     path('mensaje/borrar/<pk>', MensajeDelete.as_view(), name="BorrarM"),
 
     path('novedad/lista', NovedadList.as_view(), name="ListaN"),
+     path('novedad/lista2', NovedadList.as_view(), name="ListaN"),
     path('novedad/detalle/<pk>', NovedadDetalle.as_view(), name="DetalleN"),
     path('novedad/nuevo', NovedadCreacion.as_view(), name="NuevoN"),
     path('novedad/editar/<pk>', NovedadUpdate.as_view(), name="EditarN"),

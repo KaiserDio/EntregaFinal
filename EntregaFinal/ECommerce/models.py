@@ -64,6 +64,13 @@ class Novedad(models.Model):
     imagen = models.ImageField()
     fecha = models.DateField()
 
+""" class NovedadInicio(models.Model):
+    titulo = models.CharField(max_length=150)
+    subtitulo = models.CharField(max_length=150)
+    contenido = models.CharField(max_length=5000)
+    imagen = models.ImageField()
+    fecha = models.DateField() """
+
 
 class Mensaje(models.Model):
     idNovedad = models.ForeignKey(Novedad, on_delete = models.CASCADE)
