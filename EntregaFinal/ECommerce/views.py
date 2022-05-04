@@ -19,7 +19,7 @@ from ECommerce.forms import UserEditForm, AvatarFormulario
 
 from django.contrib.auth.models import User
 
-from django.contrib.auth.mixins import PermissionRequiredMixin
+from django.contrib.auth.mixins import PermissionRequiredMixin, LoginRequiredMixin
 
 
 
@@ -83,6 +83,15 @@ def registro(request):
 
             username = form.cleaned_data['username']
             form.save()
+
+            user = User.objects.filter(username=username).first()
+            
+            cliente = Cliente(nombre=user.first_name, apellido=user.last_name, idUser=user, telefono=0,dni=0,email='agrega@tuemail.com')
+            cliente.save()
+
+            avatar = Avatar(imagen= "avatares/deffault.jpg", user_id = user.id)
+            avatar.save()
+
             return render(request, "ECommerce/inicio.html" , {"mensaje": f"Usuario { username } creado"})
 
     else:
@@ -112,7 +121,6 @@ def editarPerfil(request):
             usuario.password2 = informacion["password2"]
             usuario.first_name = informacion["first_name"]
             usuario.last_name = informacion["last_name"]
-            
             usuario.save()
             
             return render(request, "ECommerce/inicio.html")
@@ -149,138 +157,166 @@ def agregarAvatar(request):
 # CLIENTES
 
 class ClienteList(PermissionRequiredMixin, ListView):
-    permission_required = 'ecommerce.cliente.can_view_cliente'
+    permission_required = 'ECommerce.view_cliente'
 
     model = Cliente
     template_name = "ECommerce/cliente_lista.html"
 
-class ClienteDetalle(DetailView):
+class ClienteDetalle(LoginRequiredMixin, DetailView):
     model = Cliente
     template_name =  "ECommerce/cliente_detalle.html"
 
-class ClienteCreacion(CreateView):
+class ClienteCreacion(PermissionRequiredMixin, CreateView):
+    permission_required = 'ECommerce.add_cliente'
+
     model = Cliente
     template_name =  "ECommerce/cliente_form.html"
     success_url = "/cliente/lista"
     fields = ["nombre", "apellido", "email", "dni", "telefono"]
 
-class ClienteUpdate(UpdateView):
+class ClienteUpdate(LoginRequiredMixin, UpdateView):
 
     model= Cliente
     success_url = "/cliente/lista"
     fields = ["nombre", "apellido", "email", "dni", "telefono"]
 
-class ClienteDelete(DeleteView):
+class ClienteDelete(PermissionRequiredMixin, DeleteView):
+    permission_required = 'ECommerce.delete_cliente'
+
     model = Cliente
     success_url = "/cliente/lista"
 
 # VENDEDORES
 
-class VendedorList(ListView):
+class VendedorList(PermissionRequiredMixin, ListView):
+    permission_required = 'ECommerce.view_vendedor'
 
     model = Vendedor
     template_name = "ECommerce/vendedor_lista.html"
 
-class VendedorDetalle(DetailView):
+class VendedorDetalle(PermissionRequiredMixin, DetailView):
+    permission_required = 'ECommerce.view_vendedor'
+
     model = Vendedor
     template_name =  "ECommerce/vendedor_detalle.html"
 
-class VendedorCreacion(CreateView):
+class VendedorCreacion(PermissionRequiredMixin, CreateView):
+    permission_required = 'ECommerce.add_vendedor'
+    
     model = Vendedor
     template_name =  "ECommerce/vendedor_form.html"
     success_url = "/vendedor/lista"
     fields = ["nombre", "apellido", "email", "dni", "cuil", "salario"]
 
-class VendedorUpdate(UpdateView):
+class VendedorUpdate(PermissionRequiredMixin, UpdateView):
+    permission_required = 'ECommerce.change_vendedor'
 
     model= Vendedor
     success_url = "/vendedor/lista"
     fields = ["nombre", "apellido", "email", "dni", "cuil", "salario"]
 
-class VendedorDelete(DeleteView):
+class VendedorDelete(PermissionRequiredMixin, DeleteView):
+    permission_required = 'ECommerce.delete_vendedor'
+
     model = Vendedor
     success_url = "/vendedor/lista"
 
 # PRODUCTOS
 
-class ProductoList(ListView):
+class ProductoList(LoginRequiredMixin, ListView):
 
     model = Producto
     template_name = "ECommerce/producto_lista.html"
 
-class ProductoDetalle(DetailView):
+class ProductoDetalle(LoginRequiredMixin, DetailView):
+    
     model = Producto
     template_name =  "ECommerce/producto_detalle.html"
 
-class ProductoCreacion(CreateView):
+class ProductoCreacion(PermissionRequiredMixin, CreateView):
+    permission_required = 'ECommerce.add_producto'
     model = Producto
     template_name =  "ECommerce/producto_form.html"
     success_url = "/producto/lista"
     fields = ["nombre", "categoria", "descripcion", "imagen", "stock", "precio"]
 
-class ProductoUpdate(UpdateView):
+class ProductoUpdate(PermissionRequiredMixin, UpdateView):
+    permission_required = 'ECommerce.change_producto'
 
     model= Producto
     success_url = "/producto/lista"
     fields = ["nombre", "categoria", "descripcion", "imagen", "stock", "precio"]
 
-class ProductoDelete(DeleteView):
+class ProductoDelete(PermissionRequiredMixin, DeleteView):
+    permission_required = 'ECommerce.delete_producto'
+
     model = Producto
     success_url = "/producto/lista"
 
 
 # COMPRA
 
-class CompraList(ListView):
+class CompraList(PermissionRequiredMixin, ListView):
+    permission_required = 'ECommerce.view_compra'
 
     model = Compra
     template_name = "ECommerce/compra_lista.html"
 
-class CompraDetalle(DetailView):
+class CompraDetalle(PermissionRequiredMixin, DetailView):
+    permission_required = 'ECommerce.view_compra'
+
     model = Compra
     template_name =  "ECommerce/compra_detalle.html"
 
-class CompraCreacion(CreateView):
+class CompraCreacion(PermissionRequiredMixin, CreateView):
+    permission_required = 'ECommerce.add_compra'
+
     model = Compra
     template_name =  "ECommerce/compra_form.html"
     success_url = "/compra/lista"
     fields = ["idCliente", "idVendedor","direccion", "localidad", "codigoPostal", "estado", "medioPago", "fechaCompra", "fechaEnvio", "fecha", "comprobantePago"]
 
-class CompraUpdate(UpdateView):
+class CompraUpdate(PermissionRequiredMixin, UpdateView):
+    permission_required = 'ECommerce.change_compra'
 
     model= Compra
     success_url = "/compra/lista"
     fields = ["idCliente", "idVendedor","direccion", "localidad", "codigoPostal", "estado", "medioPago", "fechaCompra", "fechaEnvio", "fecha", "comprobantePago"]
 
-class CompraDelete(DeleteView):
+class CompraDelete(PermissionRequiredMixin, DeleteView):
+    permission_required = 'ECommerce.delete_compra'
+
     model = Compra
     success_url = "/compra/lista"
 
 
 # MENSAJE
 
-class MensajeList(ListView):
+class MensajeList(LoginRequiredMixin, ListView):
 
     model = Mensaje
     template_name = "ECommerce/mensaje_lista.html"
 
-class MensajeDetalle(DetailView):
+class MensajeDetalle(LoginRequiredMixin, DetailView):
     model = Mensaje
     template_name =  "ECommerce/mensaje_detalle.html"
 
-class MensajeCreacion(CreateView):
+class MensajeCreacion(LoginRequiredMixin, CreateView):
     model = Mensaje
     template_name =  "ECommerce/mensaje_form.html"
     success_url = "/mensaje/lista"
     fields = ["idMensajeAnterior", "idCliente", "idVendedor", "asunto", "mensaje", "fecha"]
 
-class MensajeUpdate(UpdateView):
+class MensajeUpdate(PermissionRequiredMixin, UpdateView):
+    permission_required = 'ECommerce.change_mensaje'
 
     model= Mensaje
     success_url = "/mensaje/lista"
     fields = ["idMensajeAnterior", "idCliente", "idVendedor", "asunto", "mensaje", "fecha"]
 
-class MensajeDelete(DeleteView):
+class MensajeDelete(PermissionRequiredMixin, DeleteView):
+    permission_required = 'ECommerce.delete_mensaje'
+
     model = Mensaje
     success_url = "/mensaje/lista"
 
@@ -295,45 +331,58 @@ class NovedadDetalle(DetailView):
     model = Novedad
     template_name =  "ECommerce/novedad_detalle.html"
 
-class NovedadCreacion(CreateView):
+class NovedadCreacion(PermissionRequiredMixin, CreateView):
+    permission_required = 'ECommerce.add_novedad'
+
     model = Novedad
     template_name =  "ECommerce/novedad_form.html"
     success_url = "/novedad/lista"
     fields = ["titulo", "subtitulo", "contenido", "imagen", "fecha"]
 
-class NovedadUpdate(UpdateView):
+class NovedadUpdate(PermissionRequiredMixin, UpdateView):
+    permission_required = 'ECommerce.change_novedad'
 
     model= Novedad
     success_url = "/novedad/lista"
     fields = ["titulo", "subtitulo", "contenido", "imagen", "fecha"]
 
-class NovedadDelete(DeleteView):
+class NovedadDelete(PermissionRequiredMixin, DeleteView):
+    permission_required = 'ECommerce.delete_novedad'
+
     model = Novedad
     success_url = "/novedad/lista"
 
 # COMPRA X PRODUCTO
 
-class CompraXProductoList(ListView):
+class CompraXProductoList(PermissionRequiredMixin, ListView):
+    permission_required = 'ECommerce.view_compraxproducto'
 
     model = CompraXProducto
     template_name = "ECommerce/compraXProducto_lista.html"
 
-class CompraXProductoDetalle(DetailView):
+class CompraXProductoDetalle(PermissionRequiredMixin, DetailView):
+    permission_required = 'ECommerce.view_compraxproducto'
+
     model = CompraXProducto
     template_name =  "ECommerce/compraXProducto_detalle.html"
 
-class CompraXProductoCreacion(CreateView):
+class CompraXProductoCreacion(PermissionRequiredMixin, CreateView):
+    permission_required = 'ECommerce.add_compraxproducto'
+
     model = CompraXProducto
     template_name =  "ECommerce/compraXProducto_form.html"
     success_url = "/compraXProducto/lista"
     fields = ["idCompra", "idProducto", "cantidad", "precioTotal"]
 
-class CompraXProductoUpdate(UpdateView):
+class CompraXProductoUpdate(PermissionRequiredMixin, UpdateView):
+    permission_required = 'ECommerce.change_compraxproducto'
 
     model= CompraXProducto
     success_url = "/compraXProducto/lista"
     fields = ["idCompra", "idProducto", "cantidad", "precioTotal"]
 
-class CompraXProductoDelete(DeleteView):
+class CompraXProductoDelete(PermissionRequiredMixin, DeleteView):
+    permission_required = 'ECommerce.delete_compraxproducto'
+
     model = CompraXProducto
     success_url = "/compraXProducto/lista"

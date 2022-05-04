@@ -22,6 +22,8 @@ class Meta:
 
     help_text = { k:"" for k in fields }
 
+    permissions = [('ver_cliente', 'Puede Ver Cliente')]
+
 
 class AvatarFormulario(forms.Form):
 
