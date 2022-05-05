@@ -12,3 +12,5 @@ Nicolas Corbelle: Busqueda, armado e implementacion de los template finales, vin
 Nelson Daniel Rodriguez: Generacion de la base del proyecto, creacion de las funcionalidades basicas y los template aplicando CRUD. Login, Logout y Registro. Mejorar la navegacion entre paginas e implementar los perfiles incluyendo la carga de avatares. Documentacion de las pruebas unitarias y Readme.
 
 Santiago Bejarano: Diseño de la base de datos/models, definicion de los permisos/roles de los usuarios en las paginas implementando Mixin, mejora de algunas funcionalidades e implementacion de la la funcionalidad novedades con mensajeria.
+
+Se suma el link del video https://drive.google.com/drive/folders/100ES9A2hNgWtGJ66aabgkb7u52W9BIz1?usp=sharing
