@@ -33,6 +33,8 @@ def inicio(request):
     novedades = Novedad.objects.all
 
     producto = Producto.objects.all
+
+    
     
     return render(request, "ECommerce/inicio.html", {"url":avatares[0].imagen.url,"novedades":novedades, "producto":producto} )
 
